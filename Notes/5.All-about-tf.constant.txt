@@ -1,0 +1,102 @@
+🔹 1. dim (dimension)
+=======================
+
+👉 How many directions your data goes in.
+
+0D (scalar) = Just one number.
+Example: 7
+👉 dim = 0
+
+1D (vector) = A list of numbers.
+Example: [1, 2, 3]
+👉 dim = 1
+
+2D (matrix) = Rows and columns.
+Example:
+
+[[1, 2, 3],
+ [4, 5, 6]]
+
+
+👉 dim = 2
+
+3D (cube of numbers) = A stack of 2D matrices.
+Example:
+
+[[[1,2], [3,4]],
+ [[5,6], [7,8]]]
+
+
+👉 dim = 3
+
+Summary:
+
+dim = number of axes (directions) in your data.
+
+🔹 2. shape
+
+👉 The size of the data along each dimension.
+
+Example:
+
+[[1, 2, 3],
+ [4, 5, 6]]
+
+
+dim = 2 (matrix)
+
+shape = (2, 3)
+→ 2 rows, 3 columns
+
+Another example:
+
+[[[1, 2],
+  [3, 4]],
+ [[5, 6],
+  [7, 8]]]
+
+
+dim = 3
+
+shape = (2, 2, 2)
+→ 2 blocks × 2 rows × 2 columns
+
+
+🔹 3. dtype (data type)
+
+👉 What kind of numbers are stored in the tensor.
+
+int32 → integers (whole numbers, e.g., 1, 2, 3)
+
+float32 → decimals (e.g., 1.5, 2.7)
+
+bool → True/False
+
+string → text
+
+Example in TensorFlow:
+
+import tensorflow as tf
+
+t = tf.constant([1.0, 2.0, 3.0])  
+
+print(t.ndim)   # dim → 1
+print(t.shape)  # shape → (3,)
+print(t.dtype)  # dtype → float32
+
+
+📌 Quick Analogy:
+
+dim = How many directions (line, table, cube, etc.).
+
+shape = The actual size in each direction.
+
+dtype = The type of stuff inside (int, float, etc.).
+
+👉 In one line:
+
+dim = number of axes (0D, 1D, 2D…)
+
+shape = size along each axis
+
+dtype = type of values stored

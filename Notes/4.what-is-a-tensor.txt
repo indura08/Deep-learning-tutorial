@@ -1,0 +1,77 @@
+🔹 What is a Tensor?
+
+A tensor is just a fancy word for a container that holds numbers.
+
+You can think of it as a generalization of arrays (like in NumPy).
+
+It can have different dimensions (shapes) depending on the data.
+
+
+🔹 Breaking it down by dimensions
+
+1. 0D Tensor (scalar) → Just a single number
+Example:
+
+5
+
+
+2. 1D Tensor (vector) → A list of numbers
+Example:
+
+[1, 2, 3]
+
+
+3. 2D Tensor (matrix) → Rows and columns (like an Excel sheet)
+Example:
+
+[[1, 2, 3],
+ [4, 5, 6]]
+
+
+4. 3D Tensor → A stack of matrices
+Example:
+
+[
+  [[1,2,3], [4,5,6]],
+  [[7,8,9], [10,11,12]]
+]
+
+
+5. Higher-D tensors → More dimensions (used for images, videos, etc.)
+
+Images → 4D tensor (batch, height, width, channels)
+
+Videos → 5D tensor (batch, frames, height, width, channels)
+
+👉 So a tensor is just numbers in multiple dimensions.
+
+
+🔹 Why tensors matter in TensorFlow
+====================================
+
+Tensors are the basic unit of data.
+
+TensorFlow operations (like addition, multiplication, reshaping) all work on tensors.
+
+Neural networks basically take tensors in → do math → output tensors.
+
+
+🔹 Analogy (super simple)
+============================
+
+Think of a tensor as a box that can hold numbers in different shapes:
+
+0D = a dot ⚪
+
+1D = a line ➖
+
+2D = a table 📊
+
+3D = a cube 🧊
+
+Higher-D = cubes stacked into bigger cubes 🔲
+
+👉 In one sentence:
+======================
+
+A tensor is just a container for numbers, like an array with multiple dimensions, and in TensorFlow it’s the main way data is stored and processed.
