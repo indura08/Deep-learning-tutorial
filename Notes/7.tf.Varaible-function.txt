@@ -1,0 +1,57 @@
+🔹 What is tf.Variable()?
+==========================
+
+In TensorFlow, tf.Variable() is like a box that holds values, but the key thing is:
+👉 The values inside this box can change when your program runs.
+
+Think of it like a notebook:
+
+You can write something in it.
+
+Later, you can erase it and write something new.
+
+That’s what tf.Variable() does — it stores data that can be updated (like weights in a neural network that keep changing while training).
+
+Example:
+
+import tensorflow as tf
+
+x = tf.Variable(5)   # A variable that starts with value 5
+print(x)             # -> <tf.Variable 'Variable:0' shape=() dtype=int32, numpy=5>
+
+x.assign(10)         # Change the value inside it
+print(x)             # -> now it's 10
+
+
+🔹 What is tf.constant()?
+=============================
+
+This is also a box that holds values, but the value inside it cannot change.
+👉 It’s like writing something with a permanent marker.
+
+Once you set it, it’s fixed.
+
+Example:
+
+y = tf.constant(5)   # A constant with value 5
+print(y)
+
+# y.assign(10) ❌ This will give an error because you can’t change it
+
+
+🔑 Difference between tf.Variable and tf.Constant
+===================================================
+
+| Feature           | `tf.Variable()`                                                | `tf.constant()`                                                    |
+| ----------------- | -------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Can change value? | ✅ Yes, you can update                                          | ❌ No, fixed forever                                                |
+| Use case          | Things that **learn/change** during training (weights, biases) | Things that stay the same (like pi = 3.14, or fixed lookup values) |
+| Analogy           | Notebook (erasable)                                            | Permanent marker                                                   |
+
+
+Simple Analogy
+
+tf.Variable() → Your bank account balance 💰 (it keeps changing as you deposit/withdraw).
+
+tf.constant() → Your date of birth 🎂 (fixed forever).
+

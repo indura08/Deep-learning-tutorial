@@ -1,0 +1,185 @@
+🔹 What does shape mean?
+=========================
+
+The shape tells you how many elements (numbers) are along each dimension (axis).
+
+Each number inside the parentheses represents the size of that dimension.
+
+✅ Example 1: shape = (3,)
+
+👉 This means 1D tensor with 3 elements.
+
+[1, 2, 3]
+
+
+Only one axis (a line).
+
+Size = 3 numbers.
+
+✅ Example 2: shape = (3, 3)
+
+👉 This means 2D tensor → 3 rows × 3 columns.
+
+[[1, 2, 3],
+ [4, 5, 6],
+ [7, 8, 9]]
+
+
+First 3 = number of rows.
+
+Second 3 = number of columns.
+
+✅ Example 3: shape = (3, 3, 3)
+
+👉 This means 3D tensor → 3 blocks × 3 rows × 3 columns.
+
+Think of it as 3 matrices stacked on top of each other:
+
+[
+ [[1,2,3], 
+  [4,5,6], 
+  [7,8,9]],
+
+ [[10,11,12],
+  [13,14,15],
+  [16,17,18]],
+
+ [[19,20,21],
+  [22,23,24],
+  [25,26,27]]
+]
+
+
+First 3 = number of blocks (depth).
+
+Second 3 = rows.
+
+Third 3 = columns.
+
+✅ Example 4: shape = (2, 3, 1)
+
+👉 This means 3D tensor → 2 blocks × 3 rows × 1 column.
+
+[
+ [[1], 
+  [2], 
+  [3]],
+
+ [[4], 
+  [5], 
+  [6]]
+]
+
+
+First 2 = 2 blocks.
+
+Second 3 = each block has 3 rows.
+
+Third 1 = each row has 1 column.
+
+
+🔹 General Rule:
+
+Each number inside shape = size of that axis.
+
+The number of numbers inside shape = how many dimensions (axes).
+
+Examples:
+
+(3,) → 1D with 3 items.
+
+(3, 3) → 2D with 3×3 = 9 items.
+
+(3, 3, 3) → 3D with 3×3×3 = 27 items.
+
+(2, 3, 1) → 3D with 2×3×1 = 6 items.
+
+👉 In short: shape tells you the layout of your data — how many blocks, rows, and columns (and more dimensions if needed).
+
+🔹 Can there be shapes like (3,2,2,1)?
+
+✅ Absolutely. That just means a 4D tensor → 4 axes.
+Each number tells you how big that axis is.
+
+
+✅ 4D (shape = (3, 2, 2, 1))
+
+3 blocks × 2 groups × 2 rows × 1 column:
+
+[
+ [ [[1], [2]], 
+   [[3], [4]] ],
+
+ [ [[5], [6]], 
+   [[7], [8]] ],
+
+ [ [[9], [10]], 
+   [[11], [12]] ]
+]
+
+
+✅ 5D (shape = (3, 2, 1, 4, 5))
+
+Now it gets harder to “draw” 🤯, but here’s what it means:
+
+3 → outermost “big blocks”
+
+2 → inside each block, 2 groups
+
+1 → each group has 1 row
+
+4 → each row has 4 items
+
+5 → each item has 5 numbers
+
+So basically:
+
+3 × 2 × 1 × 4 × 5 = 120 numbers total.
+
+Tiny slice example of the structure:
+
+[
+  [  # first big block
+    [  # first group
+      [ 
+        [[1,2,3,4,5],
+         [6,7,8,9,10],
+         [11,12,13,14,15],
+         [16,17,18,19,20]]
+      ]
+    ],
+
+    [  # second group
+      [ 
+        [[21,22,23,24,25],
+         [26,27,28,29,30],
+         [31,32,33,34,35],
+         [36,37,38,39,40]]
+      ]
+    ]
+  ],
+
+  ... more blocks
+]
+
+
+✅ 6D (shape = (2, 2, 2, 2, 2, 2))
+
+That means 64 numbers total (2×2×2×2×2×2).
+Think of it like a cube of cubes of cubes 🤯.
+Hard to draw, but you can imagine each axis keeps nesting deeper.
+
+
+✅ 100D tensor
+
+Yes, possible! Shape might look like:
+
+(2, 2, 2, ... , 2)   # with 100 twos
+
+
+That means 2^100 numbers total (which is beyond huge).
+
+👉 In practice, we don’t go that high because it’s too big for memory. But mathematically, TensorFlow supports it.
+
+
+

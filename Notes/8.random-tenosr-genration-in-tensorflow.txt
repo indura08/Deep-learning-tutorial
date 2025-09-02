@@ -1,0 +1,95 @@
+🔹 What is a Random Tensor?
+==============================
+
+A tensor (like we discussed) is just a container for numbers, shaped in some way (1D, 2D, 3D, etc.).
+
+A random tensor means:
+
+Instead of filling it with fixed numbers (like [1,2,3]),
+
+TensorFlow fills it with randomly chosen numbers.
+
+These numbers are not predictable but follow certain rules (like rolling dice, flipping coins, or picking numbers from a box).
+
+🔹 Why Generate Random Tensors?
+==================================
+
+In machine learning, randomness is super important:
+
+1. Weights initialization – When training neural networks, the starting values of weights are random.
+
+2. Data shuffling – Keeps training unbiased.
+
+3. Simulation – You can test models with random input data.
+
+🔹 Ways to Generate Random Tensors in TensorFlow
+==================================================
+
+1. Uniform distribution – numbers are picked with equal chance from a range.
+
+import tensorflow as tf
+
+# Random numbers between 0 and 1
+x = tf.random.uniform(shape=(3,3), minval=0, maxval=10)  
+print(x)
+
+
+👉 Each number is equally likely to be between 0 and 10.
+
+
+2. Normal (Gaussian) distribution – numbers are chosen around a mean (average), like a bell curve.
+
+y = tf.random.normal(shape=(3,3), mean=0, stddev=1)  
+print(y)
+
+
+👉 Most numbers will be close to 0, some a bit far away.
+
+
+3. Random integers – whole numbers only.
+
+z = tf.random.uniform(shape=(3,3), minval=1, maxval=10, dtype=tf.int32)
+print(z)
+
+
+👉 Gives you random integers from 1 to 9.
+
+
+🔹 Key Things to Understand
+=============================
+
+shape → tells the "box size" of numbers you want (e.g., (3,3) is a 3×3 grid).
+
+distribution type → tells how the numbers are picked (uniform, normal, etc.).
+
+range → minimum and maximum values.
+
+🔹 Example with Different Shapes
+===================================
+
+# 1D random tensor (like a line of numbers)
+a = tf.random.uniform(shape=(5,))  
+
+# 2D random tensor (like a table)
+b = tf.random.uniform(shape=(3,3))  
+
+# 3D random tensor (like a cube)
+c = tf.random.uniform(shape=(2,3,4))  
+
+# 4D random tensor (like a cube with multiple layers)
+d = tf.random.uniform(shape=(2,3,4,5))  
+
+
+✅ Summary in simple terms:
+============================
+
+A random tensor = a "box" filled with random numbers.
+
+You decide the size of the box (shape), the rule for picking numbers (distribution), and the range of numbers.
+
+Randomness is essential for ML to work properly (e.g., training neural networks).
+
+
+code_explanantions:
+
+methn idla krnna thiynne 
