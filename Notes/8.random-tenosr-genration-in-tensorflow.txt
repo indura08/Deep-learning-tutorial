@@ -91,5 +91,110 @@ Randomness is essential for ML to work properly (e.g., training neural networks)
 
 
 code_explanantions:
+--------------------
 
-methn idla krnna thiynne 
+🔹 The Problem with Randomness
+================================
+
+When we say "random", we expect different numbers every time.
+
+But in programming, we often need reproducible randomness.
+👉 Example: You’re training a neural network today and tomorrow — you want the random starting weights to be the same, so results can be compared.
+
+That’s where seeds and Generators come in.
+
+🔹 What is a Seed?
+=====================
+
+A seed is like the "starting point" of randomness.
+
+Imagine you shuffle a deck of cards.
+
+If I tell you “start shuffling in this exact way,” and you do the same steps again, you’ll get the same shuffle every time.
+
+That’s what a seed does: it makes "randomness" predictable and repeatable.
+
+
+So:
+
+tf.random.set_seed(7)
+
+
+or
+
+tf.random.Generator.from_seed(7)
+
+
+👉 means: “start random number generation from this fixed starting point.”
+
+
+🔹 What is Generator?
+=======================
+
+The Generator is TensorFlow’s random number machine.
+
+Think of it like a "random number factory."
+
+from_seed(7) means: build a factory that will always start producing numbers in the same pattern if you give it the same seed.
+
+
+🔹 Now Let’s Look at Your Code
+
+random_1 = tf.random.Generator.from_seed(7)
+random_1 = random_1.normal(shape=(3,2))
+
+random_2 = tf.random.Generator.from_seed(7)
+random_2 = random_2.normal(shape=(3,2))
+
+random_1, random_2, random_1 == random_2
+
+
+
+Step by step:
+
+1. tf.random.Generator.from_seed(7)
+→ Creates a "random factory" with seed 7.
+
+2. .normal(shape=(3,2))
+→ Ask the factory for random numbers from a normal distribution (bell curve) in shape (3 rows, 2 columns).
+
+Example output (not exact, but structure like this):
+
+[[-0.43,  1.12],
+ [ 0.56, -0.32],
+ [ 0.10,  0.87]]
+
+
+3. Do the same thing again with random_2.
+Since both factories were started with the same seed (7), they’ll generate the same numbers.
+
+4. random_1 == random_2
+→ Checks element by element if they’re equal.
+Since both are identical, you’ll get:
+
+[[True, True],
+ [True, True],
+ [True, True]]
+
+
+
+✅ Key Takeaways
+==================
+
+Seed → makes randomness reproducible.
+
+Generator → TensorFlow’s random number factory.
+
+from_seed(7) → builds a factory that always produces the same "random" numbers when started fresh.
+
+If you use the same seed, you get the same results → super useful in ML experiments (so you can debug and compare).
+
+
+👉 Think of it like baking bread 🍞:
+
+Seed = recipe instructions (fixed steps).
+
+Generator = the oven.
+
+Same recipe + same oven settings → same bread every time.
+

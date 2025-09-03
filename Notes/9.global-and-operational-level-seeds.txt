@@ -1,0 +1,45 @@
+🔹 First, What’s a Random Seed?
+=================================
+
+We already said:
+A seed is like a recipe for randomness.
+
+Same seed → same random numbers.
+
+Different seed → different random numbers.
+
+Now, TensorFlow gives us two ways to set seeds:
+👉 global-level and operation-level.
+
+
+🔹 Global-level Random Seed
+===============================
+
+This is like setting a default rule for randomness in your whole program.
+
+Example:
+
+tf.random.set_seed(42)  # Global seed
+
+
+This means:
+“From now on, all random operations will follow this rule so that results are reproducible.”
+
+It’s like telling the kitchen:
+“From now on, everyone should follow recipe #42 when making random bread 🍞.”
+
+🔹 Operation-level Random Seed
+================================
+
+This is when you set a seed for one specific random operation only, not for everything.
+
+Example:
+
+a = tf.random.uniform(shape=(3,), seed=1)  # Operation-level seed
+b = tf.random.uniform(shape=(3,), seed=1)  # Same op-level seed
+
+
+Both a and b will produce the same random numbers, even if no global seed was set.
+
+It’s like telling one chef in the kitchen:
+“Hey, for this batch only, use recipe #1.”
