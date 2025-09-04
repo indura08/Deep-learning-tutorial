@@ -1,0 +1,100 @@
+🔹 Basic Tensor Operations
+----------------------------
+
+1. Addition / Subtraction
+import tensorflow as tf
+
+a = tf.constant([1, 2, 3])
+b = tf.constant([4, 5, 6])
+
+print(a + b)   # [5, 7, 9]
+print(a - b)   # [-3, -3, -3]
+
+👉 Just like normal numbers, but applied element by element.
+
+2. Multiplication / Division
+-----------------------------
+
+print(a * b)   # [4, 10, 18]   (element-wise multiplication)
+print(b / a)   # [4.0, 2.5, 2.0]  (element-wise division)
+
+3. Exponent / Power
+--------------------
+
+print(a ** 2)       # [1, 4, 9]
+print(tf.square(b)) # [16, 25, 36]
+
+4. Matrix Operations (dot product / matrix multiply)
+------------------------------------------------------
+
+When tensors are 2D (like tables), multiplication can mean linear algebra multiplication, not just element-by-element.
+
+m1 = tf.constant([[1, 2],
+                  [3, 4]])
+m2 = tf.constant([[5, 6],
+                  [7, 8]])
+
+print(tf.matmul(m1, m2))
+# [[19, 22],
+#  [43, 50]]
+
+
+👉 This is matrix multiplication, important for neural networks.
+
+
+5. Broadcasting
+-----------------
+
+TensorFlow is smart: if shapes are different but “compatible,” it stretches the smaller tensor.
+
+x = tf.constant([1, 2, 3])
+y = tf.constant(2)   # just a single number
+
+print(x + y)  # [3, 4, 5]
+
+
+👉 It “broadcasted” the 2 across [1,2,3].
+
+
+6. Aggregation Operations
+--------------------------
+
+These shrink tensors into single values.
+
+c = tf.constant([[1, 2, 3],
+                 [4, 5, 6]])
+
+print(tf.reduce_sum(c))     # 21 (adds all elements)
+print(tf.reduce_mean(c))    # 3.5 (average)
+print(tf.reduce_max(c))     # 6 (biggest number)
+print(tf.reduce_min(c))     # 1 (smallest number)
+
+
+7. Reshaping Tensors
+---------------------
+
+Change shape without changing data.
+
+d = tf.range(1, 7)     # [1, 2, 3, 4, 5, 6]
+reshaped = tf.reshape(d, (2, 3))
+print(reshaped)
+# [[1, 2, 3],
+#  [4, 5, 6]]
+
+
+✅ Summary
+
+You can do math on tensors like numbers (+ - * /).
+
+You can do matrix multiplication with tf.matmul.
+
+TensorFlow auto-adjusts with broadcasting.
+
+You can summarize tensors with aggregation (sum, mean, max, min).
+
+You can reshape tensors into new dimensions.
+
+👉 So, manipulating tensors = playing with numbers in bulk.
+It’s like moving from a calculator (one number at a time) to Excel (whole tables at once).
+
+
