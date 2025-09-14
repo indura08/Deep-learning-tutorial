@@ -1,0 +1,47 @@
+🔹 Using tfp.stats
+====================
+
+TensorFlow Probability has a stats module for variance and standard deviation:
+
+import tensorflow as tf
+import tensorflow_probability as tfp
+
+# Example tensor
+scores = tf.constant([70., 71., 69., 70., 70.])
+
+# Variance using tfp
+variance_tfp = tfp.stats.variance(scores)
+
+# Standard deviation using tfp
+std_tfp = tfp.stats.stddev(scores)
+
+print("Variance (tfp):", variance_tfp.numpy())
+print("Standard Deviation (tfp):", std_tfp.numpy())
+
+
+👉 Output:
+
+Variance (tfp): 0.4
+Standard Deviation (tfp): 0.6324555
+
+🔹 Differences Between tf and tfp
+===================================
+
+tf.math.reduce_variance() → very straightforward, just gives you variance.
+
+tfp.stats.variance() → more statistical options:
+
+You can choose sample variance or population variance.
+
+Same with tfp.stats.stddev().
+
+For example:
+
+tfp.stats.variance(scores, sample_axis=None, keepdims=False)
+
+
+✅ In short:
+
+Use tf.math.reduce_variance / tf.math.reduce_std when you just want quick results.
+
+Use tfp.stats.variance / tfp.stats.stddev when you’re working with statistical models or need more control (like population vs sample variance).

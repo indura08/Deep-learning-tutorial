@@ -1,0 +1,85 @@
+Perfect question 🚀 — because aggregation is one of the big things you’ll do with tensors when working in ML!
+
+Let’s break it down step by step in simple words 👇
+
+🔹 What does “aggregating” mean?
+----------------------------------
+
+Aggregation = taking many values and summarizing them into fewer values (often just one).
+
+Think of it like:
+
+You have marks of 30 students in a class → instead of keeping all 30, you calculate the average → that’s aggregation.
+
+You roll a dice 100 times → instead of listing all results, you just count how many times each number came up → aggregation.
+
+With tensors, it’s the same idea:
+👉 You reduce/condense values to capture an overall summary.
+
+
+🔹 Common Tensor Aggregations
+
+TensorFlow & NumPy give you many ways to aggregate:
+
+1. Sum → Add all elements together
+
+import tensorflow as tf
+x = tf.constant([[1, 2], [3, 4]])
+tf.reduce_sum(x)   # 10
+
+
+2. Mean (average) → Find the middle value
+
+tf.reduce_mean(x)  # 2.5
+
+
+3. Min / Max → Smallest or largest value
+
+tf.reduce_min(x)   # 1
+tf.reduce_max(x)   # 4
+
+
+4. Product → Multiply all values
+
+tf.reduce_prod(x)  # 24
+
+🔹 Aggregating Across Axes
+-----------------------------
+
+A tensor has axes (dimensions). You can aggregate:
+
+All elements → one single number.
+
+Along a specific axis → smaller tensor, but still keeps some structure.
+
+Example:
+
+x = tf.constant([[1, 2],
+                 [3, 4]])
+
+tf.reduce_sum(x)        # → 10  (all elements)
+tf.reduce_sum(x, axis=0) # → [4, 6] (sum column-wise)
+tf.reduce_sum(x, axis=1) # → [3, 7] (sum row-wise)
+
+
+So axis decides which way you squash the tensor.
+
+🔹 Why is aggregation important in ML?
+-------------------------------------------
+
+Because models deal with tons of numbers. At the end of the day, you need one number or a small set of numbers to make decisions.
+
+Examples:
+
+Computing loss (error of predictions):
+You predict for 1000 samples → you average their errors into one number.
+
+Pooling in CNNs (max-pooling):
+From a 4×4 grid of pixels, keep only the max → reduces info but keeps essence.
+
+Statistics:
+Models often need mean, variance, sum, etc. as features.
+
+✅ In short:
+Aggregating tensors = squeezing lots of values into a simpler form (like sum, mean, max). It’s how we summarize data so models can learn and make decisions.
+
