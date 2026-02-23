@@ -127,6 +127,24 @@ tf.random.Generator.from_seed(7)
 
 👉 means: “start random number generation from this fixed starting point.”
 
+and another simpler explanation:
+
+🔬 Why Does This Even Work?
+--------------------------------
+
+Because random numbers in computers are not truly random.
+
+They are generated using a deterministic mathematical formula like:
+
+next_number = (a * current_number + b) % m
+
+The seed is the first number fed into that formula.
+
+Different starting number → completely different sequence.
+
+Same starting number → exact same sequence every time.
+
+
 
 🔹 What is Generator?
 =======================
