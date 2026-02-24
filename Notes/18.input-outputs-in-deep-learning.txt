@@ -1,0 +1,201 @@
+We are talking about regression.
+
+Regression means:
+Predicting a number.
+
+Now you asked:
+What are regression inputs and outputs?
+
+Let’s define them clearly.
+
+1. What are inputs in regression?
+
+Inputs are the information you give the model.
+
+They are also called:
+
+features
+
+independent variables
+
+X
+
+Inputs are things that help predict something.
+
+Example 1: House price prediction
+
+Inputs could be:
+
+Size of house (1500 square feet)
+
+Number of bedrooms (3)
+
+Age of house (10 years)
+
+These are inputs.
+
+We give them to the model.
+
+2. What is the output in regression?
+
+The output is:
+The number we want to predict.
+
+Also called:
+
+target
+
+label
+
+dependent variable
+
+y
+
+In house price example:
+
+Output:
+
+Price of house (250000)
+
+That is one number.
+
+Regression always predicts a number.
+
+3. Simple math view
+
+If we write it simply:
+
+Input (X) → Model → Output (y)
+
+Example:
+
+X = [1500, 3, 10]
+y = 250000
+
+The model learns the relationship between X and y.
+
+4. One input, one output example
+
+Hours studied → Exam score
+
+Input:
+Hours studied = 5
+
+Output:
+Score = 82
+
+So:
+
+X = 5
+y = 82
+
+5. Multiple inputs, one output example
+
+Input:
+Height = 170
+Weight = 70
+Age = 25
+
+Output:
+Daily calorie need = 2200
+
+So:
+
+X = [170, 70, 25]
+y = 2200
+
+6. Shape in neural network regression
+
+In TensorFlow, inputs are usually shaped like:
+
+(number_of_samples, number_of_features)
+
+Example:
+
+100 houses
+3 features per house
+
+Input shape:
+(100, 3)
+
+Output shape:
+(100, 1)
+
+Because each house has one predicted price.
+
+7. What the model actually learns
+
+The model tries to learn:
+
+A function that connects inputs to output.
+
+Like:
+
+y = f(X)
+
+In simple linear regression:
+
+y = wX + b
+
+In neural network regression:
+
+It uses multiple layers of:
+
+multiply
+add
+apply activation
+repeat
+
+Finally producing one number.
+
+8. Important things related to regression
+
+Since you said explain everything related, here are the important connected ideas:
+
+Continuous output
+Regression outputs are continuous numbers.
+Not categories.
+
+Loss function
+In regression, we measure error using:
+
+Mean Squared Error (MSE)
+
+That means:
+Take prediction minus real value.
+Square it.
+Average it.
+
+Example:
+
+Real price = 250000
+Predicted price = 240000
+
+Error = 10000
+Squared error = 10000^2
+
+The model tries to reduce this error.
+
+No probability classes
+Unlike classification, regression does not output probabilities for classes.
+
+9. Quick comparison
+
+Regression:
+Output = number
+Example = temperature, salary, price
+
+Classification:
+Output = category
+Example = cat or dog
+
+10. Very simple summary
+
+Inputs:
+Numbers that describe the situation.
+
+Output:
+One number we want to predict.
+
+Regression:
+Learning the relationship between those inputs and that output number.

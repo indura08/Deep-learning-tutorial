@@ -1,0 +1,433 @@
+1. The Simplest Regression Model (Linear Regression)
+-------------------------------------------------------
+
+Architecture:
+
+Input → One computation → Output
+
+Example formula:
+
+y = wX + b
+
+What happens:
+
+	Take input
+
+	Multiply by weight
+
+	Add bias
+
+	Output a number
+
+That’s the simplest regression architecture.
+
+2.Neural Network Regression Architecture
+
+Now instead of one computation, we stack layers.
+
+Basic structure:
+
+Input Layer
+Hidden Layer(s)
+Output Layer
+
+Flow looks like this:
+
+Input → Hidden → Hidden → Output
+
+3. Let’s explain each part clearly
+
+A) Input Layer
+
+This is where your features enter.
+
+Example:
+
+If predicting house price:
+
+Inputs:
+Size
+Bedrooms
+Age
+
+Then input layer has 3 values.
+
+It does not "do" anything.
+It just receives data.
+
+B) Hidden Layer
+
+This is where learning happens.
+
+Each hidden layer:
+
+	Multiplies inputs by weights
+
+	Adds bias
+
+	Applies activation function
+
+Activation function is just a math function that helps the network learn complex patterns.
+
+Common one in regression:
+ReLU
+
+ReLU(x) = max(0, x)
+
+So negative values become 0.
+
+C) Output Layer
+
+In regression:
+
+The output layer usually has 1 neuron.
+
+Why?
+
+Because we want 1 number.
+
+Important:
+For regression, we usually DO NOT use softmax.
+We usually use:
+
+Linear activation (no activation)
+or
+Just raw output
+
+Because we want any real number.
+
+4. Example Architecture
+
+Suppose:
+
+We have 3 inputs.
+We use 1 hidden layer with 4 neurons.
+We want 1 output.
+
+Architecture:
+
+Input (3 values)
+→ Dense layer (4 neurons, ReLU)
+→ Dense layer (1 neuron, linear)
+
+In TensorFlow:
+
+model = Sequential([
+Dense(4, activation='relu', input_shape=(3,)),
+Dense(1)
+])
+
+That’s a regression model.
+
+5. What happens inside?
+
+Step by step:
+
+Inputs enter (3 numbers)
+
+Hidden layer multiplies each input by weights
+
+Adds bias
+
+Applies activation
+
+Produces 4 new numbers
+
+Output layer combines those 4 numbers
+
+Produces 1 final number
+
+That final number is your prediction.
+
+
+6. Loss Function (Important for regression)
+
+Regression usually uses:
+
+Mean Squared Error (MSE)
+
+Why?
+
+Because we care about how far the predicted number is from the real number.
+
+Model tries to reduce that difference.
+
+7. Training Process
+
+Architecture stays fixed.
+
+During training:
+
+Model makes prediction
+
+Calculate error
+
+Adjust weights slightly
+
+Repeat many times
+
+Eventually:
+Predictions become close to real values.
+
+8. Simple Visual Structure
+
+Example:
+
+Input: 3 values
+
+Layer 1:
+3 → 4 neurons
+
+Layer 2:
+4 → 1 neuron
+
+Final output:
+1 number
+
+That’s regression architecture.
+
+9. Important Differences from Classification Architecture
+
+Regression:
+Output layer = 1 neuron
+Activation = usually linear
+Loss = MSE
+
+Classification:
+Output layer = number of classes
+Activation = softmax or sigmoid
+Loss = cross entropy
+
+10. Final Simple Summary
+
+Regression model architecture =
+
+Input layer
++
+One or more hidden layers
++
+One output neuron that produces a number
+
+Everything inside is just:
+Multiply
+Add
+Apply activation
+Repeat
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+in tutorial there were some hyperparameters mentioned in related to regression model architecture, now lets see each one of them in a well explained manner
+
+
+
+
+
+
+1. Input layer shape
+
+This defines how many features your model receives.
+
+If your data has:
+
+3 features (for example: size, bedrooms, age)
+then the input shape is (3,)
+
+If your dataset has 10 features, the input shape is (10,)
+
+Important:
+
+Input shape = number of features per sample
+It does NOT include the number of samples.
+
+Example:
+
+If you have 100 houses and each house has 3 features:
+
+Data shape = (100, 3)
+Input layer shape = (3,)
+
+
+
+2. Hidden layers
+
+Hidden layers are the layers between input and output.
+
+They allow the model to learn complex patterns.
+
+If you have:
+
+Input → Hidden → Output
+That is 1 hidden layer.
+
+If you have:
+
+Input → Hidden → Hidden → Output
+That is 2 hidden layers.
+
+More hidden layers = deeper model.
+
+In regression, sometimes even 1 or 2 hidden layers is enough.
+
+
+
+3. Neurons per hidden layer
+
+Neurons are the units inside a layer.
+
+If you write:
+
+Dense(8)
+
+That means the layer has 8 neurons.
+
+Each neuron:
+
+multiplies inputs by weights
+
+adds bias
+
+applies activation
+
+More neurons = more learning capacity
+Too many neurons = risk of overfitting
+
+Example:
+
+Dense(4) → small layer
+Dense(128) → much larger layer
+
+
+
+4. Output layer shape
+
+In regression, we usually predict one number.
+
+So the output layer usually has:
+
+Dense(1)
+
+That means output shape is (1,)
+
+If you want to predict 3 numbers (for example: price, tax, insurance), then:
+
+Dense(3)
+
+Output shape must match how many values you want to predict.
+
+
+
+5. Hidden activation
+
+Activation function adds non-linearity.
+
+Without activation, the network behaves like simple linear regression.
+
+Common hidden activations in regression:
+
+ReLU
+tanh
+
+ReLU is most common.
+
+ReLU(x) = max(0, x)
+
+This allows the network to learn more complex patterns.
+
+If you remove activation, the model becomes limited.
+
+
+
+6. Output activation
+
+In regression, the output is usually a real number.
+
+So most of the time we use:
+
+Linear activation (which means no activation function).
+
+In TensorFlow:
+
+Dense(1)
+This automatically uses linear activation.
+
+We do not use softmax in regression.
+
+We do not use sigmoid unless we want output restricted between 0 and 1.
+
+
+
+7. Loss function
+
+Loss function measures how wrong the prediction is.
+
+In regression, common loss functions are:
+
+Mean Squared Error (MSE)
+Mean Absolute Error (MAE)
+
+Mean Squared Error:
+
+(predicted − actual)²
+Then average over all samples.
+
+Mean Absolute Error:
+
+|predicted − actual|
+Then average.
+
+The model tries to minimize this loss.
+
+Lower loss = better predictions.
+
+
+
+8. Optimizer
+
+The optimizer updates the weights to reduce the loss.
+
+It decides how the model learns.
+
+Common optimizers:
+
+SGD
+Adam
+RMSprop
+
+Adam is very commonly used because it works well in most cases.
+
+The optimizer controls:
+
+how fast weights change
+
+how learning progresses
+
+If learning rate is too high → model may become unstable
+If too low → learning becomes very slow
+
+Complete simple picture of regression architecture
+
+You define:
+
+Input shape
+Number of hidden layers
+Neurons per layer
+Hidden activation
+Output layer size
+Output activation
+Loss function
+Optimizer
+
+Then training begins.
+
+Model makes prediction → calculate loss → optimizer adjusts weights → repeat.
+
+Very simple summary
+
+Input shape = how many features
+Hidden layers = how many processing layers
+Neurons = size of each hidden layer
+Output shape = how many numbers to predict
+Hidden activation = how hidden layers transform data
+Output activation = how final prediction behaves
+Loss function = how error is measured
+Optimizer = how weights are updated

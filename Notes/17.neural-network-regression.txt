@@ -1,0 +1,150 @@
+First: Neural Network Regression.
+
+Regression means predicting a number.
+
+That’s it.
+
+If the output of a model is a continuous number like:
+
+House price → 250000
+
+Temperature → 32.5
+
+Weight → 68.2
+
+Salary → 54000
+
+That is regression.
+
+Now what is neural network regression?
+
+It just means:
+
+Using a neural network to predict a number.
+
+So instead of using a simple formula like linear regression:
+
+y = mx + b
+
+We use a neural network to learn that relationship.
+
+Very Simple Example
+
+Imagine this data:
+
+Hours studied → Exam score
+
+1 → 50
+2 → 60
+3 → 70
+4 → 80
+
+The pattern is roughly:
+
+Score = 10 × Hours + 40
+
+A neural network tries to learn that relationship automatically.
+
+It takes:
+
+Input → 3 hours
+It predicts → 72
+
+The real answer might be → 70
+
+It adjusts itself to get closer next time.
+
+That’s neural network regression.
+
+Input → number(s)
+Output → one number
+
+What does the network actually do?
+
+Inside, it:
+
+Multiplies inputs by weights
+
+Adds bias
+
+Passes through layers
+
+Produces a final number
+
+That final number is the prediction.
+
+There is no category. No classes. Just a number.
+
+That’s regression.
+
+Now second part:
+
+Difference between Machine Learning and Deep Learning.
+
+Machine Learning is the bigger field.
+
+Deep Learning is a part of machine learning.
+
+Machine Learning includes:
+
+Linear regression
+
+Logistic regression
+
+Decision trees
+
+Random forest
+
+Support vector machines
+
+Neural networks
+
+Deep Learning specifically means:
+
+Using neural networks with many layers.
+
+That’s why it’s called “deep” — many layers stacked.
+
+Simple comparison
+
+Machine Learning:
+
+Can use simple models
+
+Often needs manual feature selection
+
+Works well on structured data (tables)
+
+Deep Learning:
+
+Uses neural networks
+
+Automatically learns features
+
+Works very well on images, audio, text
+
+Example
+
+If you want to predict house prices using:
+
+Bedrooms, bathrooms, area
+
+You can use normal machine learning like linear regression.
+
+If you want to recognize cats in images:
+
+You usually use deep learning (convolutional neural networks).
+
+Very clear summary
+
+Regression:
+Predicting a number.
+
+Neural network regression:
+Using a neural network to predict a number.
+
+Machine learning:
+The general field of models that learn from data.
+
+Deep learning:
+A special part of machine learning that uses multi-layer neural networks.
