@@ -1,0 +1,104 @@
+What is one-hot encoding?
+
+One-hot encoding means:
+
+Turning a category into a list of numbers where
+only ONE position is 1
+and all other positions are 0.
+
+That’s it.
+
+Step 1: Suppose we have 3 categories
+
+Cat
+Dog
+Bird
+
+We give them numbers:
+
+Cat = 0
+Dog = 1
+Bird = 2
+
+Step 2: Normal numeric labels
+
+If we store them normally:
+
+Cat → 0
+Dog → 1
+Bird → 2
+
+But this is just a single number.
+
+Step 3: One-hot version
+
+Now instead of a single number, we create a list of length 3 (because we have 3 categories).
+
+Cat (0) → [1, 0, 0]
+Dog (1) → [0, 1, 0]
+Bird (2) → [0, 0, 1]
+
+Notice:
+
+Length of list = number of categories
+
+Only one value is 1
+
+Rest are 0
+
+Another example
+
+We have 4 categories:
+
+Red
+Blue
+Green
+Yellow
+
+We number them:
+
+Red = 0
+Blue = 1
+Green = 2
+Yellow = 3
+
+One-hot encoding:
+
+Red → [1, 0, 0, 0]
+Blue → [0, 1, 0, 0]
+Green → [0, 0, 1, 0]
+Yellow → [0, 0, 0, 1]
+
+Length is 4 because there are 4 categories.
+
+TensorFlow example
+
+import tensorflow as tf
+
+labels = tf.constant([0, 2, 1])
+
+one_hot = tf.one_hot(labels, depth=3)
+
+print(one_hot)
+
+Output:
+
+[[1. 0. 0.]
+ [0. 0. 1.]
+ [0. 1. 0.]]
+
+Depth means number of categories.
+
+Important rule
+
+If you have N categories,
+each one-hot vector must have length N.
+
+Very simple definition
+
+One-hot encoding =
+replace one number like 2
+with a list like [0, 0, 1]
+
+Only one position has 1.
+Everything else is 0.

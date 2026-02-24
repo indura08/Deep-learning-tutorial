@@ -1,0 +1,131 @@
+What does “squeezing” mean?
+---------------------------
+
+Squeezing a tensor means:
+
+Removing dimensions that have size 1.
+
+That’s it.
+
+If a tensor has an extra dimension that doesn’t really add useful structure (because its size is 1), we remove it.
+
+Why would a tensor have size 1 dimensions?
+
+Sometimes when we create tensors, especially in deep learning, we get shapes like:
+
+(1, 3)
+(3, 1)
+(1, 28, 28, 1)
+
+Those 1s are dimensions that contain only one element along that axis.
+
+They are often there because of:
+
+batching
+
+grayscale image channels
+
+reshaping operations
+
+Simple Example
+
+Example 1
+
+tensor = tf.constant([[10, 20, 30]])
+
+Shape:
+
+(1, 3)
+
+This means:
+1 row
+3 columns
+
+If we squeeze it:
+
+tf.squeeze(tensor)
+
+New shape:
+
+(3,)
+
+Now it becomes just:
+
+[10, 20, 30]
+
+We removed the unnecessary dimension of size 1.
+
+Example 2
+
+tensor = tf.constant([[[5]]])
+
+Shape:
+
+(1, 1, 1)
+
+After squeezing:
+
+tf.squeeze(tensor)
+
+Shape becomes:
+
+()
+
+Now it's just a scalar value:
+
+5
+
+All size-1 dimensions are removed.
+
+More Practical Example (Images)
+
+Suppose you have one grayscale image:
+
+Shape:
+
+(1, 28, 28, 1)
+
+Meaning:
+1 image
+28 height
+28 width
+1 channel
+
+If you squeeze it:
+
+tf.squeeze(image)
+
+Shape becomes:
+
+(28, 28)
+
+You removed:
+
+the batch dimension (1)
+
+the channel dimension (1)
+
+Now it’s just a 2D image.
+
+Important Rule
+
+Squeeze only removes dimensions that are exactly 1.
+
+It will NOT remove dimensions like:
+(2, 3, 4)
+
+Because none of those are 1.
+
+Why is squeezing useful?
+
+Makes tensor shapes simpler
+
+Helps fix shape mismatch errors
+
+Useful when preparing data for models
+
+One Line Definition
+
+Squeezing a tensor means:
+
+Removing unnecessary dimensions that have size 1.
