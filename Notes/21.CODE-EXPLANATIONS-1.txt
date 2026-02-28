@@ -1,0 +1,100 @@
+I’m going to explain this like you’re looking inside the machine while it’s running.
+--------------------------------------------------------------------------------------
+
+Here is your code again for reference:
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(1)
+])
+
+model.compile(
+    loss=tf.keras.losses.mae,
+    optimizer=tf.keras.optimizers.SGD(),
+    metrics=["mae"]
+)
+
+model.fit(x, y, epochs=5)
+
+Now let’s open it up piece by piece.
+
+MODEL CREATION
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(1)
+])
+
+
+
+1. What is tf.keras?
+=====================
+
+TensorFlow (tf) has a high-level API called Keras.
+Keras is the part that lets you build neural networks easily.
+
+So:
+
+tf.keras = neural network building tools
+
+
+What is Sequential?
+
+Sequential is a model type.
+
+It means:
+
+Layers are stacked in order.
+Output of one layer becomes input of the next.
+
+Think of it like a straight pipeline:
+
+Input → Layer → Layer → Output
+
+There is no branching.
+No skipping.
+Just one straight line.
+
+Since you only have one layer here, the structure is:
+
+Input → Dense(1) → Output
+
+What is Dense?
+
+Dense means:
+
+Every input connects to every neuron in this layer.
+
+It is a fully connected layer.
+
+Mathematically, Dense does this:
+
+output = (inputs × weights) + bias
+
+That’s it.
+
+In your case:
+
+Dense(1)
+
+means:
+
+There is exactly one neuron in this layer.
+
+So the model learns:
+
+y = wX + b
+
+This is linear regression.
+
+What happens internally when the model is created?
+
+At first:
+
+Weights are randomly initialized.
+Bias is randomly initialized.
+
+Nothing is trained yet.
+
+The model is just a structure with random numbers.
+
+
+4:47:41n nwattuwe
