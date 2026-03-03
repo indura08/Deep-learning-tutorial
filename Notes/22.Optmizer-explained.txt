@@ -1,0 +1,197 @@
+Excellent question.
+
+Now you are entering how learning actually happens inside the model.
+
+You used:
+
+optimizer = tf.keras.optimizers.SGD()
+
+And you’re asking:
+
+What is Adam?
+What is the difference between Adam and SGD?
+
+Let’s go step by step in very simple terms.
+
+
+First understand this clearly:
+
+An optimizer controls how the weights are updated.
+
+Training always follows this pattern:
+
+1. Make prediction
+2. Calculate error (loss)
+3. Compute gradients (how wrong each weight is)
+4. Update weights
+
+The optimizer decides step 4.
+
+
+
+What is SGD?
+==============
+
+SGD = Stochastic Gradient Descent
+
+Very simple idea:
+
+new_weight = old_weight − learning_rate × gradient
+
+That’s it.
+
+It looks at the slope (gradient)
+and moves a small step downhill.
+
+It uses the SAME learning rate for all weights.
+
+It does not remember the past.
+
+It just follows the current gradient.
+
+Simple.
+Straight.
+Basic.
+
+
+
+What is Adam?
+
+Adam stands for:
+
+Adaptive Moment Estimation
+
+Do not get scared by the name.
+
+In simple terms:
+
+Adam is a smarter version of SGD.
+
+It improves two things:
+
+1 It remembers past gradients
+2 It adjusts learning rate automatically for each weight
+
+So instead of:
+
+Same learning rate for everything
+
+It does:
+
+Different learning speed for different weights
+based on past behavior
+
+That makes learning:
+
+Faster
+More stable
+Less sensitive to bad hyperparameters
+
+Let’s compare clearly.
+
+SGD
+
+Very simple
+
+Uses single learning rate
+
+No memory of past updates
+
+Can be slow
+
+Needs careful tuning
+
+Adam
+
+More advanced
+
+Has memory (uses moving averages)
+
+Adjusts learning rate automatically
+
+Usually converges faster
+
+Works well without much tuning
+
+Why Adam usually works better for beginners
+
+When you train deep networks:
+
+Gradients can explode
+
+Gradients can vanish
+
+Different layers may need different update speeds
+
+Adam handles this automatically.
+
+That’s why most tutorials default to Adam.
+
+When would you use SGD?
+
+SGD is still useful when:
+
+You want more control
+
+You want better generalization in some cases
+
+You are doing research
+
+You are training very large models carefully
+
+But for learning and most practical cases:
+
+Adam is easier and more stable.
+
+In your code, if you switch to Adam:
+
+model.compile(
+    loss=tf.keras.losses.mae,
+    optimizer=tf.keras.optimizers.Adam(),
+    metrics=["mae"]
+)
+
+That’s it.
+
+Nothing else changes.
+
+Very important mental picture
+
+Imagine training like walking downhill.
+
+SGD:
+
+Walk downhill using current slope only.
+
+Adam:
+
+Walk downhill while remembering past slopes
+and adjusting your step size intelligently.
+
+Why your loss might decrease faster with Adam
+
+Because Adam:
+
+Automatically scales learning rate
+
+Avoids zig-zagging
+
+Moves more directly toward minimum
+
+One more thing you should know
+
+Adam has more internal math.
+It keeps two moving averages:
+
+Mean of gradients
+
+Mean of squared gradients
+
+But you do not need to memorize formulas now.
+
+Just understand:
+
+Adam = adaptive + memory
+SGD = simple slope following
+
+

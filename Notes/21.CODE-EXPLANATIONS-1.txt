@@ -17,7 +17,10 @@ model.fit(x, y, epochs=5)
 
 Now let’s open it up piece by piece.
 
+
+
 MODEL CREATION
+---------------
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(1)
@@ -26,7 +29,6 @@ model = tf.keras.Sequential([
 
 
 1. What is tf.keras?
-=====================
 
 TensorFlow (tf) has a high-level API called Keras.
 Keras is the part that lets you build neural networks easily.
@@ -73,7 +75,7 @@ That’s it.
 
 In your case:
 
-Dense(1)
+Dense(1) 
 
 means:
 
@@ -97,4 +99,191 @@ Nothing is trained yet.
 The model is just a structure with random numbers.
 
 
-4:47:41n nwattuwe
+
+
+
+
+MODEL COMPILATION
+-----------------
+
+model.compile(
+    loss=tf.keras.losses.mae,
+    optimizer=tf.keras.optimizers.SGD(),
+    metrics=["mae"]
+)
+
+Compile prepares the model for training.
+
+Before compile:
+Model structure exists.
+
+After compile:
+Model knows how to learn.
+
+Loss Function
+
+loss=tf.keras.losses.mae
+
+MAE means Mean Absolute Error.
+
+Formula:
+
+| predicted − actual |
+
+Then average over all samples.
+
+Why is this important?
+
+The model needs a way to measure how wrong it is.
+
+Loss = measurement of error.
+
+Training goal:
+Minimize this loss.
+
+Optimizer
+
+optimizer=tf.keras.optimizers.SGD()
+
+SGD = Stochastic Gradient Descent.
+
+This is the algorithm that updates weights.
+
+What does it do?
+
+Step 1:
+Calculate prediction.
+
+Step 2:
+Calculate loss.
+
+Step 3:
+Compute gradients.
+(Gradients tell us how much each weight affects the loss.)
+
+Step 4:
+Update weights slightly to reduce loss.
+
+Formula idea:
+
+new_weight = old_weight − learning_rate × gradient
+
+So optimizer controls how learning happens.
+
+Metrics
+
+metrics=["mae"]
+
+Metrics are for monitoring.
+
+They do not affect training.
+They just display performance.
+
+In your case:
+You are printing MAE during training.
+
+Loss and metric are the same here.
+But sometimes they can be different.
+
+
+
+
+
+MODEL TRAINING
+--------------
+
+model.fit(x, y, epochs=5)
+
+This is where actual learning happens.
+
+fit means:
+
+Adjust weights using data.
+
+What happens during one epoch?
+
+Epoch = one full pass over entire dataset.
+
+If you have 100 samples:
+
+1 epoch = model sees all 100 samples once.
+
+You set:
+
+epochs=5
+
+So the model will repeat learning process 5 times.
+
+Inside each epoch (very important)
+
+For each batch (or whole dataset if small):
+
+Forward pass
+Input goes into model
+Prediction is produced
+
+Loss calculation
+Compare prediction with real value
+
+Backpropagation
+Compute gradients
+
+Optimizer step
+Update weights
+
+Repeat.
+
+That’s learning.
+
+Let’s connect everything together
+
+When you run:
+
+model = Sequential(...)
+You build the machine.
+
+When you run:
+
+model.compile(...)
+You tell the machine:
+How to measure error.
+How to adjust itself.
+
+When you run:
+
+model.fit(...)
+You actually train it.
+
+What this exact model is mathematically doing
+
+Because you used:
+
+Dense(1)
+No activation function
+
+The model learns:
+
+y = wX + b
+
+That’s simple linear regression.
+
+TensorFlow is just automatically adjusting w and b to reduce MAE.
+
+Why no input shape?
+
+TensorFlow can infer input shape from x during first training call.
+But best practice is:
+
+tf.keras.layers.Dense(1, input_shape=(1,))
+
+This makes architecture explicit.
+
+Final Simplified Mental Model
+
+Sequential = stack layers in order
+Dense = fully connected layer
+compile = define how to learn
+loss = measure error
+optimizer = update weights
+metrics = display performance
+fit = start training
