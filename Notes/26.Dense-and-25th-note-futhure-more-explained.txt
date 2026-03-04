@@ -1,0 +1,122 @@
+If a model says:
+
+2515 trainable parameters
+
+What does that actually mean?
+
+Let’s break it down very clearly.
+
+First: What is a parameter?
+
+A parameter is just a number inside the model that can change during training.
+
+In neural networks, parameters are:
+
+weights
+biases
+
+That’s it.
+
+So when you see:
+
+2515 trainable parameters
+
+It literally means:
+
+There are 2515 numbers inside the model
+that the optimizer will update during training.
+
+Second: Where do these numbers come from?
+
+They come from layers.
+
+Every Dense layer creates:
+
+weights
+biases
+
+The number depends on:
+
+number of input features
+number of neurons
+
+
+
+Let’s build a small example to understand 2515.
+
+Imagine a model like this:
+
+Input shape: (10,)
+Dense(100)
+Dense(5)
+
+Now let’s count.
+
+Layer 1: Dense(100)
+
+Input features = 10
+Neurons = 100
+
+Weights = 10 × 100 = 1000
+Biases = 100
+
+Total for layer 1 = 1100
+
+Layer 2: Dense(5)
+
+Input features now = 100
+Neurons = 5
+
+Weights = 100 × 5 = 500
+Biases = 5
+
+Total for layer 2 = 505
+
+Total model parameters:
+
+1100 + 505 = 1605
+
+If your model says 2515 parameters,
+
+That means when you multiply all inputs × neurons across all layers
+and add all biases,
+the total count becomes 2515.
+
+Important understanding:
+
+2515 parameters means:
+
+The model has 2515 numbers it can adjust to fit the data.
+
+More parameters means:
+
+More flexibility
+More complexity
+More ability to fit patterns
+
+But also:
+
+Higher risk of overfitting
+
+What is trainable vs non-trainable again?
+
+Trainable parameters:
+
+These 2515 numbers will change during training.
+
+Non-trainable parameters:
+
+Numbers that stay fixed (for example frozen layers).
+
+Very simple summary
+
+2515 trainable parameters means:
+
+The model contains 2515 adjustable numbers
+that are being optimized to reduce the loss.
+
+That’s it.
+
+No hidden meaning.
+
+

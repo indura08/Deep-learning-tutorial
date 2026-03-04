@@ -1,0 +1,381 @@
+Very good question.
+
+This is where many beginners get confused.
+
+When you run:
+
+model.summary()
+
+You see something like:
+
+Layer (type)        Output Shape     Param #
+================================================
+dense (Dense)       (None, 1)        2
+================================================
+Total params: 2
+Trainable params: 2
+Non-trainable params: 0
+
+Let’s break every word slowly and clearly.
+
+First understand: What is a parameter?
+----------------------------------------
+
+A parameter is a number inside the model that can change during training.
+
+In neural networks, parameters are:
+
+1 Weights
+2 Biases
+
+That’s it.
+
+There are no other magic numbers.
+
+
+what is meant by Dense
+-----------------------
+
+A Dense layer is a layer where:
+
+Every input connects to every neuron in that layer.
+
+That’s why it is also called:
+
+Fully Connected Layer.
+
+Dense = Fully connected.
+
+
+You have 3 inputs:
+
+height
+weight
+age
+
+So your input looks like:
+
+[height, weight, age]
+
+Now suppose your Dense layer has 2 neurons.
+
+That means:
+
+The layer will produce 2 output numbers.
+
+Now what happens inside?
+
+Each neuron:
+
+looks at ALL inputs
+
+multiplies each input by some number
+
+adds them together
+
+adds one extra number called bias
+
+Let’s write it in simple words.
+
+Neuron 1 does:
+
+height × some_number
+
+weight × some_number
+
+age × some_number
+
+bias
+
+That produces output 1.
+
+Neuron 2 does:
+
+height × some_other_number
+
+weight × some_other_number
+
+age × some_other_number
+
+bias
+
+That produces output 2.
+
+
+Important:
+
+Each neuron has its own set of numbers.
+
+Those “some_number” values are called weights.
+
+They are just numbers that the model learns.
+
+Nothing special.
+
+Just numbers.
+
+Just understand this:
+
+If you have:
+
+3 inputs
+2 neurons
+
+Each neuron needs 3 numbers (one for each input).
+
+So total learned numbers are:
+
+3 numbers for neuron 1
+3 numbers for neuron 2
+
+Plus:
+
+1 bias for neuron 1
+1 bias for neuron 2
+
+So total numbers learned = 8
+
+That’s it.
+
+No scary math.
+
+
+Now let’s connect this to your simple regression model.
+
+You wrote:
+
+Dense(1)
+
+And your input shape is (1,)
+
+That means:
+
+There is only 1 input number.
+
+So neuron does:
+
+input × one_number + one_bias
+
+That becomes:
+
+y = wx + b
+
+That’s just simple linear regression.
+
+Why is it called Dense?
+
+Because:
+
+Every input goes into every neuron.
+
+Nothing is skipped.
+
+Fully connected.
+
+
+
+
+
+What is a weight?
+------------------
+
+In a Dense layer, every input connects to every neuron.
+
+Each connection has a number.
+
+That number is called a weight.
+
+Example:
+
+If your input has 1 feature
+and your Dense layer has 1 neuron
+
+There is:
+
+1 weight
+
+
+
+What is a bias?
+------------------
+
+Bias is an extra number added to the neuron output.
+
+If neuron does:
+
+output = (input × weight)
+
+It actually does:
+
+output = (input × weight) + bias
+
+So every neuron has:
+
+1 bias
+
+
+
+
+Now let’s count parameters in your simple model
+
+You have:
+
+Input shape = (1,)
+Dense(1)
+
+That means:
+
+1 input feature
+1 neuron
+
+So:
+
+Number of weights = 1 × 1 = 1
+Number of biases = 1
+
+Total parameters = 2
+
+That matches model.summary().
+
+
+Now let’s explain each term in summary.
+
+
+
+
+1. Total params
+=================
+
+Total parameters means:
+
+All weights + all biases in the entire model.
+
+Includes:
+
+Trainable parameters
+Non-trainable parameters
+
+So:
+
+Total params = Trainable + Non-trainable
+
+
+
+2. Trainable params
+====================
+
+Trainable means:
+
+These parameters will be updated during training.
+
+When optimizer runs:
+
+new_weight = old_weight − learning_rate × gradient
+
+It only updates trainable parameters.
+
+In normal models:
+
+All weights and biases are trainable.
+
+
+
+
+3. trainable params
+=====================
+
+These are parameters that do NOT change during training.
+
+Why would we have those?
+
+Some layers contain internal variables that are fixed.
+
+Example:
+
+Batch Normalization layer
+Pretrained models where some layers are frozen
+
+If you freeze a layer:
+
+layer.trainable = False
+
+Its weights will not update.
+
+Those become non-trainable parameters.
+
+
+
+What does Output Shape mean?
+-----------------------------
+
+If it says:
+
+(None, 1)
+
+None means:
+
+Batch size can vary.
+
+1 means:
+
+Each sample produces 1 output value.
+
+None is not a real number.
+It just means:
+
+Flexible number of samples.
+
+
+
+
+What is a layer?
+-----------------
+
+A layer is a computation block.
+
+Example:
+
+Dense layer does:
+
+output = activation(input × weights + bias)
+
+Each layer contains parameters.
+
+
+
+
+What is activation?
+--------------------
+
+Activation is a function applied after weighted sum.
+
+Example:
+
+ReLU
+Sigmoid
+Tanh
+
+In your model, you did not specify activation.
+So it uses linear activation (just passes value).
+
+
+
+
+In your simple regression model:
+--------------------------------
+
+Total params: 2
+Trainable params: 2
+Non-trainable params: 0
+
+Because:
+
+1 weight
+1 bias
+
+Both updated during training.
+
+
+
+
+
