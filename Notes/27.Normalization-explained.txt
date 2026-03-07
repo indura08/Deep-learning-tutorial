@@ -1,0 +1,248 @@
+First: Why Normalization Exists
+
+In many datasets, different features have very different scales.
+
+Example (insurance dataset):
+
+| Feature  | Example Values |
+| -------- | -------------- |
+| age      | 18 – 64        |
+| bmi      | 15 – 53        |
+| children | 0 – 5          |
+| charges  | 2000 – 60000   |
+
+
+Notice something important:
+
+Some numbers are small, some are very large.
+
+Example:
+
+These numbers are not on the same scale.
+
+This creates problems for machine learning models.
+
+
+
+The Problem Without Normalization
+-----------------------------------
+
+Neural networks learn using weights and gradients.
+
+Suppose the model is learning:
+
+prediction = w1 × age + w2 × charges
+
+Now imagine the values:
+
+age = 25
+charges = 30000
+
+Since charges is huge, it dominates the calculation.
+
+The model may think:
+
+"charges is the only important feature"
+
+Even if age also matters.
+
+This can cause:
+
+slow training
+
+unstable training
+
+poor model performance
+
+
+
+
+
+
+What Normalization Does
+---------------------------
+
+Normalization rescales numbers so they fall into a similar range.
+
+Example:
+
+Original data:
+
+age = 25
+charges = 30000
+
+After normalization:
+
+age = 0.32
+charges = 0.48
+
+Now the numbers are similar in size.
+
+This helps the model learn fairly from all features.
+
+
+
+
+Simple Definition
+------------------
+
+Normalization means:
+
+Rescaling numbers so they fall within a common range.
+
+Usually between:
+
+0 and 1
+
+or sometimes
+
+-1 and 1
+
+
+
+The Most Common Normalization Formula
+
+The most common method is Min-Max Normalization.
+
+Formula:
+
+x(normalized) =   x - x(min)
+		__________________
+
+		  x(max) - x(min)
+
+	​
+
+
+
+Example
+
+Suppose:
+
+ages = [20, 30, 40, 50]
+
+Minimum:
+
+20
+
+Maximum:
+
+50
+
+Normalize 30:
+
+(30 - 20) / (50 - 20)
+= 10 / 30
+= 0.33
+
+Now the value is between 0 and 1.
+
+
+
+What Happens After Normalization
+-----------------------------------
+
+Original:
+
+[20, 30, 40, 50]
+
+Normalized:
+
+[0.0, 0.33, 0.66, 1.0]
+
+Now all numbers are between 0 and 1.
+
+
+
+Why Neural Networks Like Normalized Data
+--------------------------------------------
+
+Neural networks work better when numbers are small and consistent.
+
+Benefits:
+
+1. Faster training
+
+Gradient descent works more efficiently.
+
+2. Stable learning
+
+Large values can cause unstable updates.
+
+3. Better accuracy
+
+Features contribute more fairly.
+
+4. Easier optimization
+
+Loss functions behave better.
+
+
+
+
+
+Types of Normalization (Important)
+---------------------------------------
+
+There are two main types beginners should know.
+
+Type 1: Min-Max Normalization
+
+Range:
+
+0 → 1
+
+Formula: uda example eke thibba formula eka
+
+
+Used when:
+
+you want a fixed range
+
+common for neural networks
+
+
+
+
+Type 2: Standardization (Z-Score Scaling)
+
+Instead of 0–1 range, it centers data around 0.
+
+Formula: (x -mean)/standard deviation
+
+
+
+Example:
+
+Original:
+
+[10, 20, 30]
+
+Mean:
+
+20
+
+Standard deviation:
+
+~8.16
+
+Standardized values:
+
+[-1.22, 0, 1.22]
+
+This means:
+
+mean becomes 0
+
+data spreads around it
+
+
+Normalization vs Standardization
+---------------------------------
+
+| Method          | Range    | Formula                 |
+| --------------- | -------- | ----------------------- |
+| Normalization   | 0 → 1    | (x − min) / (max − min) |
+| Standardization | around 0 | (x − mean) / std        |
+
+
