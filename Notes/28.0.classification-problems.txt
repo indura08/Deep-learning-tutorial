@@ -1,0 +1,275 @@
+Simple Definition
+-----------------
+
+Classification means:
+
+Teaching a machine learning model to put data into categories (classes).
+
+In other words, the model learns to decide which group something belongs to.
+
+
+
+Simple Example
+----------------
+
+Imagine you build a model that looks at an email and decides:
+
+Spam
+
+Not Spam
+
+Input:
+
+"This email contains a free gift card"
+
+Output:
+
+Spam
+
+This is classification because the model is choosing a category.
+
+
+
+Real-World Examples of Classification
+--------------------------------------
+
+| Problem            | Classes                       |
+| ------------------ | ----------------------------- |
+| Email filtering    | Spam / Not Spam               |
+| Disease detection  | Sick / Healthy                |
+| Image recognition  | Cat / Dog                     |
+| Credit approval    | Approve / Reject              |
+| Sentiment analysis | Positive / Negative / Neutral |
+
+
+
+
+
+Classification vs Regression (Very Important)
+------------------------------------------------
+
+Machine learning problems usually fall into two big types.
+
+Classification
+
+Predicts categories.
+
+Example:
+
+Dog
+Cat
+Spam
+Positive
+Regression
+
+Predicts numbers.
+
+Example:
+
+House price = 250000
+Temperature = 32°C
+Insurance cost = 15000
+
+So:
+
+| Type           | Output     |
+| -------------- | ---------- |
+| Classification | Categories |
+| Regression     | Numbers    |
+
+
+
+What Are Classes?
+--------------------
+
+The possible categories are called classes.
+
+Example:
+
+Predicting animals:
+
+Classes = {cat, dog, bird}
+
+The model learns patterns to assign the correct class.
+
+
+
+Types of Classification Problems
+
+There are three main types.
+
+Binary Classification
+
+Only two classes.
+
+Example:
+
+Spam / Not Spam
+Yes / No
+Fraud / Not Fraud
+
+Example output:
+
+0 = Not Spam
+1 = Spam
+Multi-Class Classification
+
+More than two classes.
+
+Example:
+
+Cat
+Dog
+Horse
+Bird
+
+Model chooses one class out of many.
+
+Multi-Label Classification
+
+One input can belong to multiple classes at the same time.
+
+Example: movie tags
+
+Movie → Action, Comedy
+
+Output:
+
+[Action = 1, Comedy = 1, Horror = 0]
+
+
+
+
+
+How a Classification Model Works (Simple Idea)
+-----------------------------------------------
+
+A classification model learns patterns from data.
+
+Example training data:
+
+| Age | Income | Bought Product |
+| --- | ------ | -------------- |
+| 25  | 40000  | Yes            |
+| 40  | 90000  | Yes            |
+| 20  | 15000  | No             |
+
+
+ 
+
+The model learns patterns like:
+
+higher income → more likely to buy
+
+Then when new data comes:
+
+Age = 30
+Income = 50000
+
+The model predicts:
+
+Yes
+
+
+
+
+Probabilities in Classification
+---------------------------------
+
+Most classification models actually predict probabilities first.
+
+Example output:
+
+Spam probability = 0.85
+Not spam probability = 0.15
+
+Then the model chooses the highest probability.
+
+Final prediction:
+
+Spam
+
+
+
+Common Algorithms for Classification
+---------------------------------------
+
+Some common machine learning classification models:
+
+Logistic Regression
+
+Decision Trees
+
+Random Forest
+
+Support Vector Machines
+
+Neural Networks
+
+Deep learning models also do classification.
+
+Example:
+
+Image → Neural Network → Cat
+
+
+
+
+
+Loss Functions Used in Classification
+----------------------------------------
+
+Classification models often use cross-entropy loss.
+
+Example in TensorFlow:
+
+BinaryCrossentropy
+CategoricalCrossentropy
+
+These help the model learn correct categories.
+
+
+
+Example in TensorFlow
+-----------------------
+
+Binary classification example:
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(10, activation="relu"),
+    tf.keras.layers.Dense(1, activation="sigmoid")
+])
+
+Compile:
+
+model.compile(
+    loss="binary_crossentropy",
+    optimizer="adam",
+    metrics=["accuracy"]
+)
+
+Here the model predicts:
+
+0 or 1
+
+
+
+Simple Analogy
+----------------
+
+Think of classification like sorting objects into boxes.
+
+Example:
+
+You have a box for:
+
+Apples
+Oranges
+Bananas
+
+The model learns:
+
+round + red → apple
+long + yellow → banana
+
+Then it places each fruit into the correct box.

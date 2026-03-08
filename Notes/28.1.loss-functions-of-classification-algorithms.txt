@@ -1,0 +1,238 @@
+First: What Is a Loss Function?
+--------------------------------
+
+A loss function is a formula that measures:
+
+How far the model’s prediction is from the correct answer.
+
+It produces a single number called the loss.
+
+Small loss → good prediction
+
+Large loss → bad prediction
+
+The model tries to minimize the loss during training.
+
+
+
+Example:
+
+| True Label | Model Prediction | Loss  |
+| ---------- | ---------------- | ----- |
+| Cat        | Cat              | Small |
+| Cat        | Dog              | Large |
+
+
+The optimizer (like Adam or SGD) updates weights to reduce the loss.
+
+
+
+
+Why Classification Uses Special Loss Functions
+------------------------------------------------
+
+Classification outputs probabilities.
+
+Example prediction:
+
+Dog: 0.80
+Cat: 0.15
+Bird: 0.05
+
+So we need a loss function that measures:
+
+How good the predicted probabilities are.
+
+This is why cross-entropy is commonly used.
+
+
+
+Binary Cross-Entropy (Most Common)
+-------------------------------------
+
+Used when there are only two classes.
+
+Example problems:
+
+Spam / Not spam
+
+Fraud / Not fraud
+
+Sick / Healthy
+
+The model predicts a probability between 0 and 1.
+
+Example:
+
+Prediction = 0.9
+True label = 1
+
+This means:
+
+90% probability of class 1
+
+Binary cross-entropy measures how close this probability is to the true label.
+
+TensorFlow Example
+loss = tf.keras.losses.BinaryCrossentropy()
+
+Model example:
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(1, activation="sigmoid")
+])
+
+Here:
+
+sigmoid outputs probability
+
+binary cross-entropy measures error
+
+
+
+
+
+
+Categorical Cross-Entropy
+----------------------------
+
+Used when there are more than two classes.
+
+Example problems:
+
+Cat / Dog / Bird
+
+Red / Green / Blue
+
+Positive / Neutral / Negative
+
+The model predicts probabilities for each class.
+
+Example output:
+
+Cat   : 0.10
+Dog   : 0.75
+Bird  : 0.15
+
+If the true label is Dog, this prediction is good because Dog has the highest probability.
+
+Categorical cross-entropy calculates how good that probability distribution is.
+
+TensorFlow Example
+loss = tf.keras.losses.CategoricalCrossentropy()
+
+Model example:
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(3, activation="softmax")
+])
+
+Here:
+
+softmax converts outputs into probabilities
+
+cross-entropy evaluates them
+
+
+
+
+Sparse Categorical Cross-Entropy
+-----------------------------------
+
+This is almost the same as categorical cross-entropy, but the labels are stored differently.
+
+Two ways labels can be stored
+One-hot encoding
+
+Example classes:
+
+Cat
+Dog
+Bird
+
+Dog becomes:
+
+[0,1,0]
+
+This format uses CategoricalCrossentropy.
+
+Integer encoding
+
+Same classes:
+
+Cat = 0
+Dog = 1
+Bird = 2
+
+Dog becomes:
+
+1
+
+This format uses SparseCategoricalCrossentropy.
+
+TensorFlow Example
+loss = tf.keras.losses.SparseCategoricalCrossentropy()
+
+
+
+
+
+Hinge Loss (Less Common)
+---------------------------
+
+Used mainly in Support Vector Machines (SVM).
+
+Instead of probabilities, it focuses on classification margins.
+
+Example:
+
+Correct class should be clearly separated from others.
+
+TensorFlow example:
+
+tf.keras.losses.Hinge()
+
+But this is rare in deep learning compared to cross-entropy.
+
+
+
+Why Cross-Entropy Is So Popular
+----------------------------------
+ 
+Cross-entropy works well because it:
+
+punishes confident wrong predictions
+
+rewards confident correct predictions
+
+works well with probability outputs
+
+Ex:
+
+| Prediction | True Label | Loss       |
+| ---------- | ---------- | ---------- |
+| 0.9        | 1          | Small      |
+| 0.6        | 1          | Medium     |
+| 0.1        | 1          | Very large |
+
+
+
+
+Loss vs Accuracy
+-----------------
+
+Loss function and metrics are different.
+
+Metric	Purpose
+Loss	Used to train the model
+Accuracy	Used to evaluate performance
+
+Example:
+
+loss = binary_crossentropy
+metric = accuracy
+
+Loss drives learning, metrics measure performance.
+
+
+
