@@ -1,2 +1,7 @@
 1. Andrei kapathy recipe for training nueral networks:  https://karpathy.github.io/2019/04/25/recipe/
 
+2. made with ml : https://github.com/GokuMohandas/Made-With-ML?tab=readme-ov-file
+
+3. tensorflow playground visualize the model by passing the activation functions and other things := https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.48261&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false
+
+4. machine learning cheat sheet web site ( this is refre to activation functions):= https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html

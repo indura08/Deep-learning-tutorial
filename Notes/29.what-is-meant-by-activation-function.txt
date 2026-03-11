@@ -1,0 +1,401 @@
+First: What Happens Inside a Neuron (Dense Layer)
+
+When data enters a neuron, two main steps happen.
+
+Step 1 — Linear calculation
+
+The neuron first calculates something like:
+
+		z = w x + b
+
+
+Where:
+
+x = input value
+
+w = weight (importance of the input)
+
+b = bias (extra adjustment)
+
+z = raw output of the neuron
+
+This is just a simple mathematical calculation.
+
+
+
+Example:
+
+x = 5
+w = 2
+b = 1
+z = (2 × 5) + 1
+z = 11
+
+So the neuron produces 11.
+
+But neural networks usually don't stop here.
+
+
+Step 2 — Activation Function
+
+After calculating z, the neuron passes the result through a function called an activation function.
+
+So the final output becomes:
+
+	y = activation(z)
+
+
+
+Example:
+
+z = 11
+activation(z) = ?
+
+The activation function changes the output.
+
+
+So What Is an Activation Function?
+--------------------------------------
+
+An activation function is a mathematical function that decides:
+
+How much of the neuron’s signal should be passed to the next layer.
+
+It transforms the output of the neuron.
+
+
+
+Your Code Example
+--------------------
+
+Your code:
+
+tf.keras.layers.Dense(1, activation=tf.keras.activations.linear)
+
+Here:
+
+Dense(1) → one neuron
+
+activation=linear → activation function is linear
+
+Linear activation means:
+
+output = input
+
+Nothing changes.
+
+Example:
+
+z = 11
+activation(z) = 11
+
+So the neuron simply passes the value forward.
+
+
+Why Activation Functions Are Needed
+-------------------------------------
+
+Without activation functions, neural networks become just linear equations.
+
+That means even a deep neural network would behave like:
+
+y = ax + b
+
+Which is just linear regression.
+
+Activation functions allow the model to learn complex patterns.
+
+Example patterns:
+
+	image recognition
+
+	speech recognition
+
+	language translation
+
+These require non-linear relationships.
+
+
+
+Common Activation Functions
+------------------------------
+
+Linear
+======
+
+f(x) = x
+
+Used for:
+
+regression problems
+
+Example:
+
+predicting house prices
+
+predicting insurance cost
+
+
+
+ReLU (Most common)
+==================
+
+f(x) = max(0, x)
+
+Meaning:
+
+negative numbers → become 0
+positive numbers → stay the same
+
+Example:
+
+input = -3 → output = 0
+input = 5  → output = 5
+
+Used in hidden layers of neural networks.
+
+more about relu:
+
+6. ReLU Activation Function
+
+ReLU stands for Rectified Linear Unit.
+
+Equation:
+
+𝑓
+(
+𝑥
+)
+=
+max
+⁡
+(
+0
+,
+𝑥
+)
+f(x)=max(0,x)
+
+Meaning:
+
+If x < 0 → output = 0
+If x > 0 → output = x
+
+Examples:
+
+x = −3 → 0
+x = −1 → 0
+x = 2 → 2
+x = 5 → 5
+
+So negative values are cut off.
+
+Positive values pass through unchanged.
+
+7. Why ReLU Became the Standard
+
+ReLU solved several problems that sigmoid had.
+
+Advantage 1 — No vanishing gradient for positive values
+
+For positive inputs:
+
+gradient = 1
+
+So learning continues efficiently.
+
+Advantage 2 — Computationally cheap
+
+ReLU is extremely simple:
+
+just a comparison operation.
+
+Advantage 3 — Sparse activation
+
+Many neurons output zero.
+
+This reduces computation and can improve generalization.
+
+8. Problem With ReLU
+
+ReLU also has a known issue.
+
+Dead neuron problem.
+
+If a neuron receives negative inputs all the time:
+
+output = 0
+
+gradient = 0
+
+The neuron stops learning permanently.
+
+This is called a dead ReLU neuron.
+
+Variants like Leaky ReLU were created to fix this.
+
+Example:
+
+Leaky ReLU:
+
+f(x)={x	     x>0
+     {0.01x​  x≤0​
+
+
+
+Sigmoid
+==========
+ 
+Output range:
+
+0 → 1
+
+Used for:
+
+binary classification
+
+Example:
+
+0.9 → 90% probability
+
+more information about:
+
+Sigmoid Activation Function
+
+Sigmoid is one of the earliest activation functions used in neural networks.
+
+Equation:
+
+\sigma(x)=\frac{1}{1+e^{-x}}
+
+Properties:
+
+Input range:
+−∞ to +∞
+
+Output range:
+0 to 1
+
+Graph shape:
+S-shaped curve.
+
+Meaning:
+
+Large negative numbers → output near 0
+Large positive numbers → output near 1.
+
+Examples:
+
+x = −5 → ~0.006
+x = 0 → 0.5
+x = 5 → ~0.993
+
+4. Why Sigmoid Is Useful
+
+Because the output is between 0 and 1, it behaves like a probability.
+
+Example:
+
+Output = 0.87
+
+Interpretation:
+
+87% probability of class 1.
+
+This is why sigmoid is used for:
+
+Binary classification output layers.
+
+Example model:
+
+Dense(1, activation="sigmoid")
+
+Meaning the network predicts a probability.
+
+5. Problems With Sigmoid
+
+Even though sigmoid is mathematically elegant, it has serious problems in deep networks.
+
+Problem 1 — Vanishing gradients
+
+When the input becomes very large or very negative, the sigmoid curve becomes flat.
+
+The gradient becomes close to zero.
+
+That means during training:
+
+weight updates ≈ 0.
+
+Learning becomes extremely slow.
+
+Problem 2 — Saturation
+
+Outputs near 0 or 1 barely change even if weights change.
+
+This makes training unstable.
+
+Problem 3 — Computational cost
+
+Sigmoid requires computing exp(-x) , which is more expensive than simpler functions.
+
+Because of these problems, sigmoid is rarely used in hidden layers today. 
+
+
+
+
+
+Softmax
+==========
+
+Used for multi-class classification.
+
+Example:
+
+Cat   = 0.1
+Dog   = 0.7
+Bird  = 0.2
+
+It converts outputs into probabilities that sum to 1.
+
+
+When to Use Each Activation
+===========================
+
+| Layer                        | Activation |
+| ---------------------------- | ---------- |
+| Hidden layers                | ReLU       |
+| Binary classification output | Sigmoid    |
+| Multi-class output           | Softmax    |
+| Regression output            | Linear     |
+
+
+
+Your insurance model is regression, so using linear activation is correct.
+
+
+Final Simple Explanation
+------------------------
+
+Activation functions answer this question:
+
+Should the neuron activate strongly, weakly, or not at all?
+
+They transform the neuron’s output so the network can learn complex patterns instead of just simple equations.
+
+
+✅ Simple summary
+--------------------
+
+Activation function = a mathematical function that changes the output of a neuron before passing it to the next layer.
+
+Example in your code:
+
+Dense(1, activation="linear")
+
+
+means the neuron does not modify the output.
+
+If you'd like, I can also explain something that confuses almost every beginner:
+
+👉 Why ReLU became the most important activation function in deep learning (and why older activations like sigmoid caused training problems).
+
